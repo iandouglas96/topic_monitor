@@ -1,0 +1,18 @@
+- Odometry:
+  name: /orbslam3_ros_node/pose
+  hz: 5
+- OVC:
+  name: /ovc/rgb/image_color
+  hz: 10
+- GPS:
+  name: /ublox/fix
+  hz: 5
+- ASOOM Pose:
+  name: /asoom/recent_key_pose
+  hz: 0.2
+- ASOOM Map:
+  name: /asoom/map_sem_img
+  hz: 0
+- ASOOM Map Center:
+  name: /asoom/map_sem_img_center
+  hz: 0

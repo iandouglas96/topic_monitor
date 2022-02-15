@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node pkg="topic_monitor" type="topic_monitor.py" name="topic_monitor" output="screen">
+    <param name="config_path" value="$(find topic_monitor)/config/jackal.yaml"/>
+  </node>
+</launch>

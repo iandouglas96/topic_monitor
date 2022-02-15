@@ -1,0 +1,18 @@
+- Odometry:
+  name: /upslam/global_pose 
+  hz: 5
+- Map:
+  name: /map
+  hz: 0.2
+- Ouster:
+  name: /os1_cloud_node/imu
+  hz: 5
+- XView:
+  name: /upslam/sem_pose
+  hz: 5
+- ASOOM Map:
+  name: /iapetus/asoom/map_sem_img
+  hz: 0
+- ASOOM Map Center:
+  name: /iapetus/asoom/map_sem_img_center
+  hz: 0
