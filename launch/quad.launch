@@ -7,4 +7,8 @@
   </node>
 
   <include file="$(find asoom)/launch/asoom_titan.launch" pass_all_args="true"/>
+  <include file="$(find comm_stack_launch)/launch/iapetus_comms.launch" pass_all_args="true">
+    <arg name="robot_ip" value="192.168.11.108" />
+  </include>
+
 </launch>

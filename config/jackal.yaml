@@ -13,6 +13,12 @@
 - ASOOM Map:
   name: /iapetus/asoom/map_sem_img
   hz: 0
+- ASOOM Pose:
+  name: /iapetus/asoom/recent_key_pose
+  hz: 0
 - ASOOM Map Center:
   name: /iapetus/asoom/map_sem_img_center
+  hz: 0
+- Path:
+  name: /semantic_planner/path
   hz: 0

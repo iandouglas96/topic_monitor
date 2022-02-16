@@ -62,9 +62,9 @@ class TopicMonitor:
         rospy.loginfo("===================================================")
         for topic in self.topic_monitors_:
             if topic.is_published():
-                rospy.loginfo(f"✔️  {topic}")
+                rospy.loginfo("\033[92m(x) "+str(topic)+"\033[0m")
             else:
-                rospy.loginfo(f"❌  {topic}")
+                rospy.loginfo("\033[31;1m( ) "+str(topic)+"\033[0m")
 
 if __name__ == '__main__':
     rospy.init_node("topic_monitor")
