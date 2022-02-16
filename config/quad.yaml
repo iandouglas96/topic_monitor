@@ -7,6 +7,9 @@
 - GPS:
   name: /ublox/fix
   hz: 5
+- Segmentation:
+  name: /asoom/sem
+  hz: 0
 - ASOOM Pose:
   name: /asoom/recent_key_pose
   hz: 0.2
