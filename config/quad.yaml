@@ -12,7 +12,7 @@
   hz: 0
 - ASOOM Pose:
   name: /asoom/recent_key_pose
-  hz: 0.2
+  hz: 0.1
 - ASOOM Map:
   name: /asoom/map_sem_img
   hz: 0
