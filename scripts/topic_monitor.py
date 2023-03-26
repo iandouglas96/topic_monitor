@@ -4,6 +4,7 @@ import rospy
 import rostopic
 import yaml
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
+from std_msgs.msg import Empty
 
 class Topic:
     def __init__(self, config):
@@ -52,12 +53,15 @@ class TopicMonitor:
             rospy.logfatal("No config path specified")
             quit()
         config = yaml.safe_load(open(config_path, 'r'))    
+        
+        self.fault_armed_ = False
 
         self.topic_monitors_ = []
         for topic in config:
             self.topic_monitors_.append(Topic(topic))
 
         self.diagnostics_pub_ = rospy.Publisher('/diagnostics', DiagnosticArray, queue_size=1)
+        self.fault_pub_ = rospy.Publisher('~fault', Empty, queue_size=1)
         self.report_data_timer_ = rospy.Timer(rospy.Duration(1), self.report_data_cb)
 
     def report_data_cb(self, timer):
@@ -65,6 +69,7 @@ class TopicMonitor:
         diag_arr_msg = DiagnosticArray()
         diag_arr_msg.header.stamp = rospy.Time.now()
 
+        all_ok = True
         for topic in self.topic_monitors_:
             diag_msg = DiagnosticStatus()
             diag_msg.name = str(topic)
@@ -74,12 +79,24 @@ class TopicMonitor:
                 diag_msg.level = DiagnosticStatus.OK
                 rospy.loginfo("\033[92m(x) "+str(topic)+"\033[0m")
             else:
+                all_ok = False
                 diag_msg.message = f"Actual: {topic.meas_hz} Hz, Desired: {topic.hz} Hz"
                 diag_msg.level = DiagnosticStatus.WARN
                 rospy.loginfo("\033[31;1m( ) "+str(topic)+"\033[0m")
             diag_arr_msg.status.append(diag_msg)
 
         self.diagnostics_pub_.publish(diag_arr_msg)
+
+        if all_ok:
+            self.fault_armed_ = True
+        elif self.fault_armed_:
+            rospy.logwarn("TOPIC MONITOR FAULT")
+            self.pub_fault()
+            self.fault_armed_ = False
+
+    def pub_fault(self):
+        msg = Empty()
+        self.fault_pub_.publish(msg)
 
 if __name__ == '__main__':
     rospy.init_node("topic_monitor")

@@ -1,0 +1,6 @@
+- Test1:
+  name: /test/topic1
+  hz: 0
+- Test2:
+  name: /test/topic2
+  hz: 0.1
