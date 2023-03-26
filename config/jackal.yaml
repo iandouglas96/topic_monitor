@@ -19,3 +19,6 @@
 - Path:
   name: /spomp_global/path_viz
   hz: 0
+- DB Hashes:
+  name: /topic_publisher/hashes
+  hz: 0

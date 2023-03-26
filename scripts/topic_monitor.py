@@ -74,7 +74,7 @@ class TopicMonitor:
                 diag_msg.level = DiagnosticStatus.OK
                 rospy.loginfo("\033[92m(x) "+str(topic)+"\033[0m")
             else:
-                diag_msg.message = f"Actual: {topic.hz} Hz, Desired: {topic.meas_hz} Hz"
+                diag_msg.message = f"Actual: {topic.meas_hz} Hz, Desired: {topic.hz} Hz"
                 diag_msg.level = DiagnosticStatus.WARN
                 rospy.loginfo("\033[31;1m( ) "+str(topic)+"\033[0m")
             diag_arr_msg.status.append(diag_msg)
