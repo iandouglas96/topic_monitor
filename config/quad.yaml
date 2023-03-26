@@ -5,7 +5,7 @@
   name: /ovc/rgb/image_color
   hz: 10
 - GPS:
-  name: /ublox/fix
+  name: /mavros/global_position/raw/fix
   hz: 5
 - Segmentation:
   name: /asoom/sem
@@ -14,8 +14,5 @@
   name: /asoom/recent_key_pose
   hz: 0.1
 - ASOOM Map:
-  name: /asoom/map_sem_img
-  hz: 0
-- ASOOM Map Center:
-  name: /asoom/map_sem_img_center
+  name: /asoom/map/compressed
   hz: 0

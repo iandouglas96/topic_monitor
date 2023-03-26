@@ -3,6 +3,7 @@
 import rospy
 import rostopic
 import yaml
+from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 
 class Topic:
     def __init__(self, config):
@@ -56,15 +57,31 @@ class TopicMonitor:
         for topic in config:
             self.topic_monitors_.append(Topic(topic))
 
-        self.print_data_timer_ = rospy.Timer(rospy.Duration(1), self.print_data_cb)
+        self.diagnostics_pub_ = rospy.Publisher('/diagnostics', DiagnosticArray, queue_size=1)
+        self.report_data_timer_ = rospy.Timer(rospy.Duration(1), self.report_data_cb)
 
-    def print_data_cb(self, timer):
+    def report_data_cb(self, timer):
         rospy.loginfo("===================================================")
+        diag_arr_msg = DiagnosticArray()
+        diag_arr_msg.header.stamp = rospy.Time.now()
+        diag_msg = DiagnosticStatus()
+        diag_msg.name = "Topic Monitor"
+
+        diag_msg.level = DiagnosticStatus.OK
         for topic in self.topic_monitors_:
+            key_value = KeyValue()
+            key_value.key = str(topic)
             if topic.is_published():
+                key_value.value = "ok"
                 rospy.loginfo("\033[92m(x) "+str(topic)+"\033[0m")
             else:
+                key_value.value = "err"
+                diag_msg.level = DiagnosticStatus.WARN
                 rospy.loginfo("\033[31;1m( ) "+str(topic)+"\033[0m")
+            diag_msg.values.append(key_value)
+
+        diag_arr_msg.status.append(diag_msg)
+        self.diagnostics_pub_.publish(diag_arr_msg)
 
 if __name__ == '__main__':
     rospy.init_node("topic_monitor")

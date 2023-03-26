@@ -1,24 +1,21 @@
-- Odometry:
-  name: /upslam/global_pose 
-  hz: 5
-- Map:
-  name: /map
-  hz: 0.2
 - Ouster:
-  name: /os1_cloud_node/imu
+  name: /os_node/imu
+  hz: 5
+- Realsense:
+  name: /camera/color/image_raw_throttle/compressed
+  hz: 1
+- Jackal:
+  name: /jackal_velocity_controller/odom
+  hz: 1
+- Odometry:
+  name: /os_node/rofl_odom/pose
   hz: 5
 - XView:
-  name: /upslam/sem_pose
-  hz: 5
+  name: /top_down_render/pose_est
+  hz: 0
 - ASOOM Map:
-  name: /iapetus/asoom/map_sem_img
-  hz: 0
-- ASOOM Pose:
-  name: /iapetus/asoom/recent_key_pose
-  hz: 0
-- ASOOM Map Center:
-  name: /iapetus/asoom/map_sem_img_center
+  name: /titan/asoom/map/compressed
   hz: 0
 - Path:
-  name: /semantic_planner/path
+  name: /spomp_global/path_viz
   hz: 0

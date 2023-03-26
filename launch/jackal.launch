@@ -6,10 +6,8 @@
     <param name="config_path" value="$(find topic_monitor)/config/jackal.yaml"/>
   </node>
 
-  <include file="$(find top_down_render)/launch/top_down_render_live.launch" pass_all_args="true"/>
-  <include file="$(find multiwaypoint_nav)/launch/navigate_global.launch" pass_all_args="true"/>
-  <include file="$(find jackal_launch)/launch/jackal_autonomy.launch" pass_all_args="true"/>
-  <include file="$(find comm_stack_launch)/launch/jackal_comms.launch" pass_all_args="true">
-    <arg name="robot_ip" value="192.168.11.102" />
+  <include file="$(find jackal_launch)/launch/jackal_hw.launch" pass_all_args="True">
+    <arg name="ouster" value="True"/>
+    <arg name="realsense" value="True"/>
   </include>
 </launch>

@@ -6,9 +6,6 @@
     <param name="config_path" value="$(find topic_monitor)/config/quad.yaml"/>
   </node>
 
-  <include file="$(find asoom)/launch/asoom_titan.launch" pass_all_args="true"/>
-  <include file="$(find comm_stack_launch)/launch/iapetus_comms.launch" pass_all_args="true">
-    <arg name="robot_ip" value="192.168.11.108" />
-  </include>
+  <include file="$(find dcist_titan_launch)/launch/startup.launch" pass_all_args="True"/>
 
 </launch>
