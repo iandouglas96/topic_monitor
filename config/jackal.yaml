@@ -20,5 +20,5 @@
   name: /spomp_global/path_viz
   hz: 0
 - DB Hashes:
-  name: /topic_publisher/hashes
+  name: /ddb/topic_publisher/headers
   hz: 0

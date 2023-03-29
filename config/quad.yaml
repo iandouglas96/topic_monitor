@@ -12,10 +12,10 @@
   hz: 0
 - ASOOM Pose:
   name: /asoom/recent_key_pose
-  hz: 0.1
+  hz: 0.02
 - ASOOM Map:
   name: /asoom/map/compressed
   hz: 0
 - DB Hashes:
-  name: /topic_publisher/hashes
+  name: /ddb/topic_publisher/headers
   hz: 0
